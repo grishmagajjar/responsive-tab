@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Responsive Tab</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .tabcontent {
+            display: none;
+        }
+        @media screen and (min-width:768px) {
+            .mobile-tab {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:767px) {
+            .tab {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tab">
+            <input type="button" class="tablinks " onclick="openTab(event, 'tab1')" id="defaultOpen" value="Tab 1">
+            <input type="button" class="tablinks" onclick="openTab(event, 'tab2')" value="Tab 2">
+        </div>
+        <div>
+            <div class="mobile-tab"><input type="button" class="tablinks " onclick="openTab(event, 'tab1')" id="defaultOpen" value="Tab 1"></div>
+            <div id="tab1" class="tabcontent">
+                Tab 1 Content
+            </div>
+            <div class="mobile-tab"><input type="button" class="tablinks" onclick="openTab(event, 'tab2')" value="Tab 2"></div>
+            <div id="tab2" class="tabcontent">
+                Tab 2 Content
+            </div>
+        </div>
+    </div>
+    <script>
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        tablinks = document.getElementsByClassName("tablinks");
+        function openTab(evt, tabName) {
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        if (window.innerWidth > 768) {
+            document.getElementById("defaultOpen").click();
+        }
+        // }
+        else if (window.innerWidth < 768) {
+            function openTab(evt, tabName) {
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                var prev_state_display = document.getElementById(tabName).style.display;
+
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                if (prev_state_display === "none") {
+                    document.getElementById(tabName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                } else {
+                    document.getElementById(tabName).style.display = "none";
+                    evt.currentTarget.className.replace(" active", "");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
